@@ -3,10 +3,11 @@ import axios from 'axios';
 
 export default class MexCalc extends React.Component {
   state = {
-    mexs: []
-  }
+    mexs: [] 
+  } 
 
-  componentDidMount(){
+  componentDidMount(){ 
+    setInterval( () => {
       axios.get(`https://api.elrond.com/transactions?from=0&size=10&withScResults=true`)
       .then(
           res => {
@@ -14,6 +15,11 @@ export default class MexCalc extends React.Component {
               this.setState ({mexs});
           }
       )
+      .catch(error => console.log(error))
+  },1000 );}
+
+  componentWillUnmount(){
+
   } 
 
   render(){
@@ -21,12 +27,10 @@ export default class MexCalc extends React.Component {
           <ul>
               { 
                   this.state.mexs
-                  .map(mex=>
-                    <li>{mex.fee}</li>
-                    )
+                  .map(mex=><li key={mex.nonce}>{mex.fee}</li>)
               }
           </ul>
       )
-  }
-
+  } 
 }
+ 

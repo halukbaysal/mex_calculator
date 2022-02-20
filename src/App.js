@@ -1,11 +1,9 @@
  
-import './App.css';
-import MexCalc from './components/mexCalc';  
+import './App.css'; 
 
 function App() {
   return (
-    <div className="App">  
-     <MexCalc/>
+    <div className="App">   
     </div>
   );
 }
